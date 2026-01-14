@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novatec Telecom - Internet Fibra Óptica Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* --- Variáveis de Design --- */
+        :root {
+            /* Cores da Marca */
+            --color-primary: #0b1e42;    /* Azul Profundo (Títulos escuros) */
+            --color-secondary: #004e92;  /* Azul Médio */
+            --color-cyan: #00d2ff;       /* Ciano Vibrante (Destaques) */
+            --color-accent-green: #00c853;
+            --color-accent-red: #d50000;
+            
+            /* Neutros & Textos - AJUSTADO PARA MELHOR CONTRASTE */
+            --color-white: #ffffff;
+            --color-light-bg: #f8faff;   /* Fundo muito claro azulado */
+            
+            /* MUDANÇA PRINCIPAL: Texto do corpo mais escuro para contraste em fundos claros */
+            --color-text-body: #334155;  /* Cinza azulado escuro (quase chumbo) */
+            --color-text-heading: #0a1935; /* Azul muito escuro, quase preto, para títulos */
+
+            /* Efeitos */
+            --shadow-soft: 0 10px 30px -10px rgba(11, 30, 66, 0.1);
+            --shadow-hover: 0 20px 40px -10px rgba(11, 30, 66, 0.2);
+            --shadow-glow: 0 0 25px rgba(0, 210, 255, 0.5);
+            --gradient-primary: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            /* Gradiente mais brilhante para textos em fundos escuros */
+            --gradient-cyan-bright: linear-gradient(135deg, #e0f7fa, var(--color-cyan), #00a6ff);
+            --gradient-cyan: linear-gradient(135deg, var(--color-cyan), #00a6ff);
+        }
+
+        /* --- Reset e Estilos Gerais --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: var(--color-text-body); /* Usando a nova cor mais escura */
+            background-color: var(--color-light-bg);
+            overflow-x: hidden;
+            font-weight: 400;
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--color-text-heading);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Utilitários de Animação ao Scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Header & Navegação --- */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+
+        header.scrolled {
+            background: rgba(11, 30, 66, 0.95); /* Mais opaco para leitura */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 10px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 55px;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--color-white); /* Branco puro para contraste no header */
+            font-weight: 600;
+            font-size: 1rem;
+            position: relative;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3); /* Sombra sutil para melhorar leitura sobre qualquer fundo */
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--color-cyan);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--color-cyan);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn-nav-highlight {
+            background: rgba(0, 210, 255, 0.15); /* Fundo ciano transparente */
+            border: 2px solid var(--color-cyan);
+            color: var(--color-cyan) !important;
+            padding: 10px 28px;
+            border-radius: 50px;
+            font-weight: 700 !important;
+            text-shadow: none !important;
+        }
+
+        .btn-nav-highlight:hover {
+            background: var(--color-cyan);
+            color: var(--color-primary) !important;
+            box-shadow: var(--shadow-glow);
+        }
+        .btn-nav-highlight::after { display: none; }
+
+        .menu-toggle {
+            display: none;
+            color: var(--color-white);
+            font-size: 26px;
+            cursor: pointer;
+        }
+
+        /* --- Hero Section (Banner) --- */
+        .hero {
+            min-height: 100vh;
+            background: radial-gradient(circle at top right, #004e92, #05122b); /* Fundo ligeiramente mais escuro */
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(5, 18, 43, 0.8), rgba(5, 18, 43, 0.95)), /* Camada escura para garantir contraste */
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300d2ff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            top: 0; left: 0;
+            z-index: 1;
+        }
+
+        .hero-shape {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: var(--color-cyan);
+            filter: blur(180px);
+            opacity: 0.25; /* Reduzido um pouco para não lavar o fundo */
+            top: -150px;
+            right: -150px;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 750px;
+            color: var(--color-white);
+            text-align: left;
+        }
+
+        /* Tagline com melhor contraste */
+        .hero-tagline {
+            display: inline-block;
+            background: rgba(0, 40, 80, 0.6);
+            border: 1px solid var(--color-cyan);
+            color: var(--color-white); /* Texto branco para contraste máximo */
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .hero-tagline i { color: var(--color-cyan); margin-right: 8px;}
+
+        .hero h1 {
+            font-size: 4.2rem;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            font-weight: 800;
+            color: var(--color-white); /* Branco puro */
+        }
+
+        .hero h1 span {
+            /* Usando o gradiente mais brilhante */
+            background: var(--gradient-cyan-bright);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(0, 210, 255, 0.3); /* Glow sutil para destacar */
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--color-white); /* Branco puro */
+            opacity: 1; /* Removida transparência para contraste máximo */
+            margin-bottom: 45px;
+            max-width: 650px;
+            font-weight: 400;
+        }
+
+        .btn-main {
+            display: inline-block;
+            padding: 20px 50px;
+            background: var(--gradient-cyan);
+            color: var(--color-primary);
+            font-weight: 700;
+            font-size: 1.15rem;
+            border-radius: 50px;
+            box-shadow: var(--shadow-glow);
+            transform: translateY(0);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-main:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 210, 255, 0.7);
+            background: linear-gradient(135deg, #40e0ff, #00c3ff);
+        }
+
+        .btn-main i { margin-left: 10px; }
+
+        /* --- Seções Gerais --- */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto 70px;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+            color: var(--color-text-heading); /* Título bem escuro */
+        }
+        
+        .section-title::before {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 5px;
+            background: var(--gradient-cyan);
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 10px;
+        }
+
+        .section-subtitle {
+            font-size: 1.15rem;
+            color: var(--color-text-body); /* Subtítulo com contraste melhorado */
+            font-weight: 500;
+        }
+
+        /* --- Planos (Cards Modernos) --- */
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            align-items: center;
+        }
+
+        .plan-card {
+            background: var(--color-white);
+            border-radius: 24px;
+            padding: 50px 35px;
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(11, 30, 66, 0.08); /* Borda sutil para definição */
+            overflow: hidden;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(0, 210, 255, 0.5);
+        }
+
+        .plan-card.featured {
+            background: linear-gradient(165deg, #ffffff, #e6f7ff);
+            border: 2px solid var(--color-cyan);
+            box-shadow: 0 20px 60px -15px rgba(0, 210, 255, 0.35);
+            transform: scale(1.05);
+            z-index: 10;
+        }
+        .plan-card.featured:hover {
+            transform: scale(1.08) translateY(-15px);
+        }
+
+        .badge-popular {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--gradient-cyan);
+            color: var(--color-primary);
+            font-weight: 800;
+            font-size: 0.85rem;
+            padding: 10px 30px;
+            border-bottom-left-radius: 25px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .flag-accent {
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 7px;
+            background: linear-gradient(to right, var(--color-accent-green) 33%, var(--color-white) 33%, var(--color-white) 66%, var(--color-accent-red) 66%);
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+
+        .plan-name {
+            font-size: 1.5rem;
+            color: var(--color-text-heading);
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .plan-speed {
+            margin: 30px 0;
+        }
+
+        .speed-value {
+            font-size: 5.5rem;
+            font-weight: 800;
+            line-height: 0.9;
+            background: var(--color-primary); /* Cor sólida escura para melhor leitura */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            /* Se preferir gradiente, use este mais escuro: background: linear-gradient(135deg, #0b1e42, #004e92); */
+        }
+        
+        .featured .speed-value {
+             background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .speed-unit {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-cyan);
+            display: block;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .plan-price {
+            margin-bottom: 40px;
+            color: var(--color-text-body);
+        }
+        
+        .plan-price .currency { font-size: 1.3rem; font-weight: 600; vertical-align: top; color: var(--color-text-heading);}
+        .plan-price .amount { font-size: 3.5rem; font-weight: 800; color: var(--color-text-heading); line-height: 1;}
+        .plan-price .period { font-size: 1.1rem; font-weight: 500; }
+
+        .plan-features {
+            text-align: left;
+            margin-bottom: 40px;
+            padding: 0 15px;
+        }
+
+        .plan-features li {
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            color: var(--color-text-body); /* Contraste melhorado */
+            font-size: 1.05rem;
+        }
+
+        .check-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px;
+            height: 26px;
+            background: rgba(0, 210, 255, 0.1);
+            color: var(--color-cyan);
+            border-radius: 50%;
+            margin-right: 15px;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+            border: 1px solid rgba(0, 210, 255, 0.3);
+        }
+        
+        .plan-card.featured .check-icon {
+            background: var(--color-cyan);
+            color: var(--color-primary);
+            border: none;
+        }
+
+        .btn-plan {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 1.15rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            cursor: pointer;
+            background: #eef2f7; /* Fundo cinza claro para contraste */
+            color: var(--color-primary);
+        }
+
+        .btn-plan:hover {
+            background: #dce4eb;
+            border-color: var(--color-primary);
+        }
+
+        .featured .btn-plan {
+            background: var(--gradient-cyan);
+            color: var(--color-primary);
+            box-shadow: var(--shadow-glow);
+            border: none;
+        }
+        
+        .featured .btn-plan:hover {
+            box-shadow: 0 10px 35px rgba(0, 210, 255, 0.6);
+            background: linear-gradient(135deg, #40e0ff, #00c3ff);
+        }
+
+        /* --- Diferenciais --- */
+        .features-section {
+            background: var(--color-white);
+            position: relative;
+            padding-top: 150px; /* Espaço para a onda */
+        }
+        
+        .wave-divider {
+            position: absolute;
+            top: -1px;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+        }
+        .wave-divider svg {
+            position: relative;
+            display: block;
+            width: calc(133% + 1.3px);
+            height: 120px;
+        }
+        .wave-divider .shape-fill {
+            fill: var(--color-light-bg);
+        }
+
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+
+        .feature-box {
+            background: var(--color-light-bg);
+            padding: 50px 40px;
+            border-radius: 30px;
+            text-align: left;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .feature-box:hover {
+            background: var(--color-white);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--color-cyan);
+            transform: translateY(-10px);
+        }
+
+        .icon-bubble {
+            width: 80px;
+            height: 80px;
+            background: var(--color-primary);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            color: var(--color-cyan);
+            box-shadow: 0 15px 30px rgba(11, 30, 66, 0.2);
+        }
+        
+        .feature-box:nth-child(2) .icon-bubble { background: var(--color-cyan); color: var(--color-primary); box-shadow: 0 15px 30px rgba(0, 210, 255, 0.4);}
+        .feature-box:nth-child(3) .icon-bubble { background: var(--color-accent-green); color: white; box-shadow: 0 15px 30px rgba(0, 200, 83, 0.3);}
+
+
+        .feature-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--color-text-heading);
+        }
+        
+        .feature-box p {
+            color: var(--color-text-body); /* Contraste melhorado */
+            font-size: 1.1rem;
+        }
+
+        /* --- CTA Final --- */
+        .cta-section {
+            background: linear-gradient(135deg, #05122b, #0b1e42); /* Fundo mais escuro */
+            color: var(--color-white);
+            text-align: center;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section h2 { color: var(--color-white); font-size: 3rem;}
+        .cta-section .section-title::before { background: var(--color-cyan); }
+        .cta-section p { 
+            color: var(--color-white); 
+            opacity: 0.95; 
+            max-width: 700px; 
+            margin: 0 auto 40px; 
+            font-size: 1.3rem;
+        }
+
+        /* --- Footer Moderno --- */
+        footer {
+            background: #030a1a; /* Azul quase preto */
+            color: rgba(255,255,255,0.85); /* Aumentada opacidade para melhor leitura */
+            padding: 100px 0 30px;
+            font-size: 1rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1.3fr;
+            gap: 60px;
+            margin-bottom: 70px;
+        }
+        
+        .footer-about img { height: 55px; margin-bottom: 25px; filter: brightness(100) grayscale(100%); opacity: 1; }
+        .footer-about p { margin-bottom: 30px; line-height: 1.8; }
+
+        .footer-heading {
+            color: var(--color-white);
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-links li {
+            margin-bottom: 18px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.85);
+            font-weight: 500;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-cyan);
+            padding-left: 10px;
+        }
+        
+        .contact-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 22px;
+            color: rgba(255,255,255,0.9);
+        }
+        .contact-list i {
+            color: var(--color-cyan);
+            margin-right: 18px;
+            font-size: 1.2rem;
+            margin-top: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            color: var(--color-white);
+            font-size: 1.2rem;
+        }
+
+        .social-icon:hover {
+            background: var(--color-cyan);
+            color: var(--color-primary);
+            transform: translateY(-5px) rotate(360deg);
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            text-align: center;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.6);
+        }
+        .copyright span { color: var(--color-cyan); }
+
+
+        /* --- Responsividade --- */
+        @media (max-width: 1024px) {
+            .hero h1 { font-size: 3.5rem; }
+            .plans-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;}
+             .plan-card { padding: 40px 25px; }
+             .plan-card.featured { transform: scale(1); }
+             .plan-card.featured:hover { transform: translateY(-10px); }
+             .speed-value { font-size: 4.5rem; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0; right: -100%;
+                height: 100vh;
+                width: 85%;
+                max-width: 400px;
+                background: var(--color-primary);
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: center;
+                padding: 80px 40px;
+                transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+                z-index: 999;
+            }
+
+            .nav-links.active { right: 0; }
+            .nav-links li { margin-bottom: 20px; width: 100%; }
+            .nav-links a { font-size: 1.3rem; display: block; }
+            .btn-nav-highlight { width: 100%; text-align: center; margin-top: 20px;}
+            .menu-toggle { display: block; z-index: 1001; }
+            
+            .hero { padding-top: 150px; text-align: center; justify-content: center; min-height: auto; padding-bottom: 100px;}
+            .hero-content { margin: 0 auto; }
+            .hero h1 { font-size: 2.8rem; }
+            .hero p { font-size: 1.1rem; }
+            .hero-tagline { margin: 0 auto 25px; }
+            .hero-shape { width: 300px; height: 300px; right: -50px; top: -50px; filter: blur(100px);}
+
+            section { padding: 70px 0; }
+            .section-title { font-size: 2.2rem; }
+            
+            .footer-grid { grid-template-columns: 1fr; gap: 50px; text-align: center; }
+            .footer-about, .footer-contact, .footer-links { align-items: center; display: flex; flex-direction: column; }
+            .contact-list li { justify-content: center; }
+            .footer-links a:hover { padding-left: 0; color: var(--color-cyan); }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="#"><img src="data:image/jpeg;base64,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" />
+</a>
+            </div>
+            
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home" class="active">Início</a></li>
+                    <li><a href="#plans">Planos Fibra</a></li>
+                    <li><a href="#features">Vantagens</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                    <li><a href="#" class="btn-nav-highlight"><i class="fas fa-user-circle" style="margin-right: 8px;"></i>Área do Cliente</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-shape"></div> <div class="container">
+            <div class="hero-content reveal">
+                <div class="hero-tagline"><i class="fas fa-rocket"></i> Conexão do Futuro</div>
+                <h1>A Internet que acompanha <br>o seu <span>ritmo.</span></h1>
+                <p>Fibra óptica de ultra velocidade para você jogar, trabalhar e maratonar suas séries favoritas sem interrupções. Instalação rápida e suporte local.</p>
+                
+                <button onclick="scrollToPlans()" class="btn-main">
+                    Ver Ofertas Especiais <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="plans">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Planos Feitos para Você</h2>
+                <p class="section-subtitle">Escolha a velocidade ideal para sua casa ou negócio com a melhor tecnologia de fibra.</p>
+            </div>
+
+            <div class="plans-grid reveal">
+                
+                <div class="plan-card">
+                    <h3 class="plan-name">Essencial</h3>
+                    <div class="plan-speed">
+                        <span class="speed-value">300</span>
+                        <span class="speed-unit">MEGA</span>
+                    </div>
+                    <div class="plan-price">
+                        <span class="currency">R$</span>
+                        <span class="amount">89,90</span>
+                        <span class="period">/mês</span>
+                    </div>
+                    <ul class="plan-features">
+                        <li><span class="check-icon"><i class="fas fa-check"></i></span>100% Fibra Óptica</li>
+                        <li><span class="check-icon"><i class="fas fa-check"></i></span>Wi-Fi 5 Dual Band Grátis</li>
+                        <li><span class="check-icon"><i class="fas fa-check"></i></span>Instalação Gratuita</li>
+                        <li><span class="check-icon"><i class="fas fa-check"></i></span>Suporte local ágil</li>
+                    </ul>
+                    <a href="https://wa.me/5500000000000?text=Quero%20assinar%20o%20plano%20Essencial%20300MB" class="btn-plan">Assinar Essencial</a>
+                </div>
+
+                <div class="plan-card featured">
+                    <div class="flag-accent"></div> <div class="badge-popular"><i class="fas fa-star" style="margin-right: 5px;"></i> Mais Escolhido</div>
+                    <h3 class="plan-name">Família Turbo</h3>
+                    <div class="plan-speed">
+                        <span class="speed-value">600</span>
+                        <span class="speed-unit">MEGA</span>
+                    </div>
+                    <div class="plan-price">
+                        <span class="currency">R$</span>
+                        <span class="amount">119,90</span>
+                        <span class="period">/mês</span>
+                    </div>
+                    <ul class="plan-features">
+                        <li><span class="check-icon"><i class="fas fa-check"></i></span>Tudo do plano anterior</li>
+                        <li><span class="check-icon"><i class="fas fa-check"></i></span>Wi-Fi 6 de Última Geração</li>
+                        <li><span class="check-icon"><i class="fas fa-check"></i></span>Upload Turbinado</li>
+                        <li><span class="check-icon"><i class="fas fa-check"></i></span>Ideal para 5+ dispositivos</li>
+                    </ul>
+                    <a href="https://wa.me/5500000000000?text=Quero%20assinar%20o%20plano%20Familia%20Turbo%20600MB" class="btn-plan">Assinar Turbo</a>
+                </div>
+
+                <div class="plan-card">
+                    <h3 class="plan-name">Gamer Pro</h3>
+                    <div class="plan-speed">
+                        <span class="speed-value">900</span>
+                        <span class="speed-unit">MEGA</span>
+                    </div>
+                    <div class="plan-price">
+                        <span class="currency">R$</span>
+                        <span class="amount">149,90</span>
+                        <span class="period">/mês</span>
+                    </div>
+                    <ul class="plan-features">
+                        <li><span class="check-icon"><i class="fas fa-check"></i></span>Máxima Velocidade e Estabilidade</li>
+                        <li><span class="check-icon"><i class="fas fa-check"></i></span>IP Fixo Incluso</li>
+                        <li><span class="check-icon"><i class="fas fa-check"></i></span>Rota Gamer (Baixa Latência)</li>
+                        <li><span class="check-icon"><i class="fas fa-check"></i></span>Atendimento Prioritário</li>
+                    </ul>
+                    <a href="https://wa.me/5500000000000?text=Quero%20assinar%20o%20plano%20Gamer%20Pro%20900MB" class="btn-plan">Assinar Gamer Pro</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section" id="features">
+        <div class="wave-divider">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            </svg>
+        </div>
+
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Por que somos diferentes?</h2>
+                <p class="section-subtitle">Não entregamos apenas internet, entregamos a melhor experiência de conectividade da região.</p>
+            </div>
+
+            <div class="features-grid reveal">
+                <div class="feature-box">
+                    <div class="icon-bubble">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3>Ultra Velocidade Real</h3>
+                    <p>Garantia de banda contratada com tecnologia 100% fibra óptica de ponta a ponta até dentro da sua casa.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="icon-bubble">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Suporte Humanizado</h3>
+                    <p>Esqueça os robôs. Nossa equipe de atendimento é local, rápida e resolve seu problema de verdade.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="icon-bubble">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Estabilidade e Segurança</h3>
+                    <p>Navegação segura com redundância de rede para garantir que você esteja sempre online quando mais precisa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section reveal">
+        <div class="container">
+            <h2 class="section-title">Pronto para voar?</h2>
+            <p>Não perca mais tempo com internet lenta. Conecte-se hoje mesmo à melhor fibra óptica da região.</p>
+            <a href="https://wa.me/5500000000000" class="btn-main" style="background: var(--color-white); color: var(--color-primary); box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+                <i class="fab fa-whatsapp" style="margin-right: 10px; color: #25D366; font-size: 1.3rem;"></i> Falar com Consultor Agora
+            </a>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <img src="image_41986d.png" alt="Novatec Logo White" style="filter: brightness(100) grayscale(100%);"> 
+                    <p>A Novatec Telecom conecta você ao mundo com a mais alta tecnologia em fibra óptica. Qualidade, velocidade e respeito ao cliente em primeiro lugar.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h4 class="footer-heading">Navegação</h4>
+                    <ul>
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#plans">Planos</a></li>
+                        <li><a href="#features">Diferenciais</a></li>
+                        <li><a href="https://www.novatecnet.com.br/" target="_blank">Site Institucional</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4 class="footer-heading">Links Úteis</h4>
+                    <ul>
+                        <li><a href="#">Área do Cliente</a></li>
+                        <li><a href="#">Segunda Via do Boleto</a></li>
+                        <li><a href="#">Teste de Velocidade</a></li>
+                        <li><a href="#">Contratos e Regulamentos</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h4 class="footer-heading">Fale Conosco</h4>
+                    <ul class="contact-list">
+                        <li><i class="fas fa-phone-alt"></i> 0800 123 4567</li>
+                        <li><i class="fab fa-whatsapp"></i> (11) 99999-9999</li>
+                        <li><i class="fas fa-envelope"></i> contato@novatec.com.br</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Av. Principal, 1000 - Centro</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2024 Novatec Telecom. Todos os direitos reservados. Feito com <i class="fas fa-heart" style="color: var(--color-accent-red); font-size: 0.8rem;"></i> para conectar você.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Função para rolar suavemente até os planos
+        function scrollToPlans() {
+            document.getElementById('plans').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Toggle do Menu Mobile
+        function toggleMenu() {
+            const nav = document.querySelector('.nav-links');
+            const menuIcon = document.querySelector('.menu-toggle i');
+            nav.classList.toggle('active');
+            
+            // Alterna ícone entre barras e X
+            if(nav.classList.contains('active')) {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+            } else {
+                menuIcon.classList.add('fa-bars');
+                menuIcon.classList.remove('fa-times');
+            }
+        }
+
+        // Fechar menu ao clicar no link (mobile)
+        document.querySelectorAll('.nav-links a:not(.btn-nav-highlight)').forEach(link => {
+            link.addEventListener('click', () => {
+                if(window.innerWidth <= 768) {
+                    toggleMenu();
+                }
+            });
+        });
+
+        // Efeito de Header Glassmorphism ao rolar
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Animação de "Scroll Reveal" (Aparecer ao rolar)
+        window.addEventListener('scroll', reveal);
+
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+
+            for (var i = 0; i < reveals.length; i++) {
+                var windowheight = window.innerHeight;
+                var revealtop = reveals[i].getBoundingClientRect().top;
+                var revealpoint = 150;
+
+                if (revealtop < windowheight - revealpoint) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        // Ativar reveal na carga inicial para o banner
+        reveal();
+
+    </script>
+</body>
+</html>
